@@ -1,0 +1,32 @@
+version: "3.7"
+services:
+  db:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: geek
+      MYSQL_PASSWORD: geek
+      MYSQL_DATABASE: geek
+    ports:
+      - 3306:3306
+    volumes:
+      - ../data/mysql:/var/lib/mysql
+    networks:
+      - internal
+  adminer:
+    image: adminer:latest
+    environment:
+      ADMINER_DEFAULT_SERVER: db
+    ports:
+      - 89:8080
+    networks:
+      - internal
+
+networks:
+  proxy:
+    external: true
+  internal:
+    driver: bridge
+volumes:
+  ssl-certs:
+    external: true
