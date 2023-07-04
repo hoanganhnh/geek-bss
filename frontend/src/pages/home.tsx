@@ -1,12 +1,6 @@
 import * as React from "react";
-import { useRouter } from "next/router";
 import {
   Box,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
   Container,
   Grid,
   Typography,
@@ -14,15 +8,17 @@ import {
   Button,
 } from "@mui/material";
 import { DataGrid, GridColumns } from "@mui/x-data-grid";
+import { useFormik } from "formik";
 import dynamic from "next/dynamic";
-import DevicesIcon from "@mui/icons-material/Devices";
-import SettingsIcon from "@mui/icons-material/Settings";
-import RestoreIcon from "@mui/icons-material/Restore";
 
 import Header from "@/components/common/Header";
 import SEO from "@/components/common/SEO";
 import { useUser } from "@/contexts/AuthenticateProvider";
-import { Device } from "@/interfaces/device.interface";
+import type { Device } from "@/interfaces/device.interface";
+import { toDate } from "@/utils/date";
+import { deviceValidation } from "@/validations/device.validation";
+import AppBarContainer from "@/components/AppBarContainer";
+import DeviceService from "@/services/device.service";
 
 const Chart = dynamic(
   () => import("react-google-charts").then((com) => com.Chart),
@@ -31,72 +27,11 @@ const Chart = dynamic(
   }
 );
 
-const rows = [
-  {
-    id: 1,
-    name: "TV",
-    ip: "127.0.0.1",
-    created: "2023-07-03 10:07:49",
-  },
-  {
-    id: 2,
-    name: "TV",
-    ip: "127.0.0.1",
-    created: "2023-07-03 10:07:49",
-  },
-  {
-    id: 3,
-    name: "TV",
-    ip: "127.0.0.1",
-    created: "2023-07-03 10:07:49",
-  },
-  {
-    id: 4,
-    name: "TV",
-    ip: "127.0.0.1",
-    created: "2023-07-03 10:07:49",
-  },
-  {
-    id: 5,
-    name: "TV",
-    ip: "127.0.0.1",
-    created: "2023-07-03 10:07:49",
-  },
-  {
-    id: 6,
-    name: "TV",
-    ip: "127.0.0.1",
-    created: "2023-07-03 10:07:49",
-  },
-];
+interface ListDevicesProps {
+  devices: Device[];
+}
 
-const data = [
-  ["Task", "Hours per Day"],
-  ["Work", 11],
-  ["Eat", 2],
-  ["Commute", 2],
-  ["Watch TV", 2],
-  ["Sleep", 7],
-];
-
-const toDate = (dateString: string | number | Date, locale = "en") => {
-  const date = new Date(dateString);
-
-  const localeString = locale == "ar" ? "en-CA" : "en-GB";
-
-  const options: Intl.DateTimeFormatOptions = {
-    year: "numeric",
-    day: "2-digit",
-    month: "2-digit",
-  };
-
-  return date.toLocaleString(localeString, options);
-};
-
-function Home() {
-  const { user } = useUser();
-  const router = useRouter();
-
+function ListDevices({ devices }: ListDevicesProps) {
   const columns: GridColumns<Device> = [
     {
       flex: 0.055,
@@ -104,6 +39,9 @@ function Home() {
       field: "name",
       headerName: "Device",
       renderCell: ({ row: { name } }) => <Typography>{name}</Typography>,
+      sortable: false,
+      filterable: false,
+      hideable: false,
     },
     {
       flex: 0.15,
@@ -113,6 +51,9 @@ function Home() {
       renderCell: ({ value }) => {
         return <Typography sx={{ color: "text.primary" }}>{value}</Typography>;
       },
+      sortable: false,
+      filterable: false,
+      hideable: false,
     },
     {
       flex: 0.1,
@@ -123,69 +64,114 @@ function Home() {
       renderCell: ({ value }) => (
         <Typography sx={{ color: "text.primary" }}>{value}</Typography>
       ),
+      sortable: false,
+      filterable: false,
+      hideable: false,
     },
   ];
+
+  return (
+    <Box sx={{ height: 360 }}>
+      <DataGrid columns={columns} rows={devices} getRowId={(row) => row?.id} />
+    </Box>
+  );
+}
+
+function Home() {
+  const { user } = useUser();
+  const [devices, setDevices] = React.useState<Device[]>([]);
+  const [dataPie, setDataPie] = React.useState<
+    Array<[string, number | string]>
+  >([]);
+
+  const handleGetNumberDevice = React.useCallback((devices: Device[]) => {
+    const mapDevices = new Map<string, number>();
+    devices.forEach((device) => {
+      if (!mapDevices.get(device.name)) {
+        mapDevices.set(device.name, 1);
+      } else {
+        const value = mapDevices.get(device.name);
+        if (typeof value !== "undefined") {
+          mapDevices.set(device.name, value + 1);
+        }
+      }
+    });
+
+    return Object.entries(Object.fromEntries(mapDevices));
+  }, []);
+
+  const handleGetDevices = React.useCallback(async () => {
+    try {
+      const data = await DeviceService.getDevices();
+      setDevices(data);
+      const pies = handleGetNumberDevice(data);
+      setDataPie([["Task", "Hours per Day"], ...pies]);
+    } catch (error) {
+      console.error(error);
+      setDevices([]);
+    }
+  }, [handleGetNumberDevice]);
+
+  React.useEffect(() => {
+    handleGetDevices();
+  }, [handleGetDevices]);
+
+  const formik = useFormik({
+    initialValues: {
+      name: "",
+      ip: "",
+    },
+    validationSchema: deviceValidation,
+    onSubmit: async (values) => {
+      try {
+        const data = await DeviceService.createDevice(values);
+        if (data.status === 200) {
+          await handleGetDevices();
+          formik.resetForm();
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    },
+  });
 
   return (
     <Box>
       <SEO title="Home" />
       <Header title="" username={user?.username} />
       <Container maxWidth="xl">
-        <Grid container display={["none", "flex"]}>
-          <Grid item xs={2} display={["none", "none", "block"]}>
-            <Box component="nav">
-              <List>
-                <ListItem disablePadding>
-                  <ListItemButton onClick={() => router.push("/home")}>
-                    <ListItemIcon>
-                      <DevicesIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Dashboard" />
-                  </ListItemButton>
-                </ListItem>
-                <ListItem disablePadding onClick={() => router.push("/log")}>
-                  <ListItemButton>
-                    <ListItemIcon>
-                      <RestoreIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Logs" />
-                  </ListItemButton>
-                </ListItem>
-                <ListItem disablePadding>
-                  <ListItemButton>
-                    <ListItemIcon>
-                      <SettingsIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Setting" />
-                  </ListItemButton>
-                </ListItem>
-              </List>
-            </Box>
-          </Grid>
-          <Grid item xs={12} sm={12} md={10} paddingLeft={3} paddingTop={3}>
-            <Box sx={{ height: 360 }}>
-              <DataGrid
-                columns={columns}
-                rows={rows}
-                getRowId={(row) => row?.id}
-              />
-            </Box>
-          </Grid>
-        </Grid>
-        <Box>
+        <AppBarContainer>
+          <ListDevices devices={devices} />
+        </AppBarContainer>
+        <Box minHeight="400px" overflow="hidden">
           <Grid container>
             <Grid item xs={12} md={9}>
-              <Chart chartType="PieChart" data={data} width={"100%"} />
+              <Chart
+                chartType="PieChart"
+                data={dataPie}
+                width={"100%"}
+                height="400px"
+                options={{ pieHole: 0.4, is3D: false }}
+              />
             </Grid>
             <Grid item xs={12} md={3}>
-              <Box component="form" noValidate sx={{ mt: 3 }}>
+              <Box
+                component="form"
+                noValidate
+                sx={{ mt: 3 }}
+                onSubmit={formik.handleSubmit}
+              >
                 <TextField
                   margin="normal"
                   fullWidth
-                  id="device"
-                  name="device"
+                  id="name"
+                  name="name"
                   label="Device"
-                  title="device"
+                  title="name"
+                  value={formik.values.name}
+                  onChange={formik.handleChange}
+                  error={formik.touched.name && Boolean(formik.errors.name)}
+                  helperText={formik.touched.name && formik.errors.name}
                 />
                 <TextField
                   margin="normal"
@@ -194,8 +180,17 @@ function Home() {
                   name="ip"
                   label="IP"
                   title="ip"
+                  value={formik.values.ip}
+                  onChange={formik.handleChange}
+                  error={formik.touched.ip && Boolean(formik.errors.ip)}
+                  helperText={formik.touched.ip && formik.errors.ip}
                 />
-                <Button variant="contained" size="medium" sx={{ mt: 3 }}>
+                <Button
+                  variant="contained"
+                  size="medium"
+                  sx={{ mt: 3 }}
+                  type="submit"
+                >
                   Add device
                 </Button>
               </Box>

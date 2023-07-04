@@ -11,8 +11,6 @@ $items = new Device($db);
 $stmt = $items->getDevices();
 $itemCount = $stmt->rowCount();
 
-echo json_encode($itemCount);
-
 $employeeArr = array();
 $employeeArr["data"] = array();
 $employeeArr["counts"] = $itemCount;

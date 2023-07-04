@@ -16,10 +16,6 @@ $database = new Database();
 $db = $database->getConnection();
 $item = new Device($db);
 
-$data = json_decode(file_get_contents("php://input"));
-$item->name = $data->name;
-$item->ip = $data->ip;
-
 if (Request::check("POST")) {
     $data = json_decode(file_get_contents("php://input"));
     if (
@@ -45,15 +41,15 @@ if (Request::check("POST")) {
 
     else :
 
+        $item->name = $data->name;
+        $item->ip = $data->ip;
 
+        if ($item->createDevice()) {
+            Response::json(1, 200, null, "ok", null);
+        } else {
+            Response::json(1, 400, "Fail create device", "fail", null);
+        }
 
-        Response::json(1, 200, null, "ok", null);
 
     endif;
-}
-
-if ($item->createDevice()) {
-    echo 'Device created successfully!';
-} else {
-    echo 'Error create!';
 }
