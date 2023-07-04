@@ -17,17 +17,17 @@ type AuthenticateDispatchContextType = React.Dispatch<{
   payload: Partial<User>;
 }>;
 
-const userInfor = (getDataStorage(USER_DATA) as Partial<User>) || null;
+const userInfo = (getDataStorage(USER_DATA) as Partial<User>) || null;
 
 const AuthenticateStateContext =
-  React.createContext<AuthenticateSateContextType>({ user: userInfor });
+  React.createContext<AuthenticateSateContextType>({ user: userInfo });
 AuthenticateStateContext.displayName = "AuthenticateSateContext";
 
 const AuthenticateDispatchContext =
   React.createContext<AuthenticateDispatchContextType>(() => {});
 AuthenticateDispatchContext.displayName = "AuthenticateDispatchContext";
 
-function authenReucder(
+function authenReducer(
   state: { user: Partial<User> | null },
   action: { type: "login" | "logout"; payload: Partial<User> | null }
 ) {
@@ -48,8 +48,8 @@ export function AuthenticateProvider({
 }: {
   children: React.ReactNode;
 }) {
-  const [state, dispatch] = React.useReducer(authenReucder, {
-    user: userInfor,
+  const [state, dispatch] = React.useReducer(authenReducer, {
+    user: userInfo,
   });
   return (
     <AuthenticateStateContext.Provider value={state}>

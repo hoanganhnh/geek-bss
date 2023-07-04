@@ -74,7 +74,7 @@ export function AlertProvider({ children }: { children: React.ReactNode }) {
   const [state, dispatch] = React.useReducer(alertReducer, {
     isOpen: false,
     type: "info",
-    message: "infor",
+    message: "info",
   });
   return (
     <AlertContext.Provider value={state}>

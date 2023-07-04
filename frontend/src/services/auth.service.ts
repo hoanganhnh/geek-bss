@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { User } from "@/interfaces/user.interface";
+import type { User } from "@/interfaces/user.interface";
 
 export const signIn = async (userSignInData: {
   username: string;

@@ -1,5 +1,5 @@
 import { ChangeEvent } from "react";
-import { Box, IconButton, TextField } from "@mui/material";
+import { Box, IconButton, TextField, Button } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import SearchIcon from "@mui/icons-material/Search";
 
@@ -7,12 +7,14 @@ interface QuickSearchToolbarProps {
   value: string;
   clearSearch: () => void;
   onChange: (e: ChangeEvent) => void;
+  onClick?: () => void;
 }
 
 const QuickSearchToolbar = ({
   value,
   onChange,
   clearSearch,
+  onClick,
 }: QuickSearchToolbarProps) => {
   return (
     <Box
@@ -58,6 +60,9 @@ const QuickSearchToolbar = ({
           },
         }}
       />
+      <Button sx={{ textTransform: "none" }} onClick={onClick}>
+        Search
+      </Button>
     </Box>
   );
 };

@@ -1,5 +1,6 @@
 import axios from "axios";
-import { Device } from "@/interfaces/device.interface";
+
+import type { Device } from "@/interfaces/device.interface";
 
 class DeviceService {
   static async getDevices() {

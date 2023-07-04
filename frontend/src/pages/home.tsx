@@ -72,7 +72,12 @@ function ListDevices({ devices }: ListDevicesProps) {
 
   return (
     <Box sx={{ height: 360 }}>
-      <DataGrid columns={columns} rows={devices} getRowId={(row) => row?.id} />
+      <DataGrid
+        columns={columns}
+        rows={devices}
+        getRowId={(row) => row?.id}
+        rowsPerPageOptions={[]}
+      />
     </Box>
   );
 }
