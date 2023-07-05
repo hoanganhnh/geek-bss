@@ -15,12 +15,12 @@ function validate()
 
 	if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		if (empty($_POST["name"])) {
-			$nameErr = "Enter username !";
+			$nameErr = "Hãy nhập tên !";
 		} else {
 			$_SESSION["name"] = test_input($_POST["name"]);
 		}
 		if (empty($_POST["password"])) {
-			$passwordErr = "Enter password !";
+			$passwordErr = "Hãy nhập mật khẩu !";
 		} else {
 			$_SESSION["password"] = $_POST["password"];
 		}
@@ -36,7 +36,7 @@ function validate()
 		header('location: ./View/dashboard.php');
 		session_destroy();
 	} else {
-		echo "Invalid username or password!";
+		echo "Sai tên đăng nhập hoặc mật khẩu";
 		session_destroy();
 	};
 }

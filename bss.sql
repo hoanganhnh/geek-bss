@@ -1,3 +1,11 @@
+-- phpMyAdmin SQL Dump
+-- version 5.1.1
+-- https://www.phpmyadmin.net/
+--
+-- Máy chủ: 127.0.0.1
+-- Thời gian đã tạo: Th10 25, 2021 lúc 10:00 PM
+-- Phiên bản máy phục vụ: 10.4.21-MariaDB
+-- Phiên bản PHP: 8.0.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +32,7 @@ CREATE TABLE `device` (
   `name` varchar(255) NOT NULL,
   `MAC` varchar(255) NOT NULL,
   `IP` varchar(255) NOT NULL,
-  `created` date NOT NULL,
+  `crdate` date NOT NULL,
   `consumption` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -32,7 +40,7 @@ CREATE TABLE `device` (
 -- Đang đổ dữ liệu cho bảng `device`
 --
 
-INSERT INTO `device` (`id`, `name`, `MAC`, `IP`, `created`, `consumption`) VALUES
+INSERT INTO `device` (`id`, `name`, `MAC`, `IP`, `crdate`, `consumption`) VALUES
 (1, 'TV', '00:1B:44:11:3B:B7', '127.0.0.1', '2021-11-03', 40),
 (2, 'Washer', '00:1B:44:11:3A:B8', '127.0.0.3', '2021-05-31', 50),
 (3, 'Refrigerator', '00:1B:44:11:3A:B9', '127.0.0.4', '2021-05-31', 80),
@@ -48,14 +56,14 @@ CREATE TABLE `logs` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `action` varchar(255) NOT NULL,
-  `created` date NOT NULL
+  `crdate` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `logs`
 --
 
-INSERT INTO `logs` (`id`, `name`, `action`, `created`) VALUES
+INSERT INTO `logs` (`id`, `name`, `action`, `crdate`) VALUES
 (1, 'TV', 'Turn On', '2021-06-03'),
 (5, 'TV', 'Turn On', '2021-06-03'),
 (9, 'TV', 'Turn On', '2021-06-03'),

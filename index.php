@@ -13,10 +13,10 @@
 <body>
 	<div id="box-log-in">
 		<div class="row-content">
-			<b>BSS SYSTEM</b>
+			<b>SOIOT SYSTEM</b>
 		</div>
 		<form method="post" action="" class="form">
-			<div class="div-alert">
+			<div class="div-noti">
 				<?php validate(); ?>
 			</div>
 			<div class="row-account">

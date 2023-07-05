@@ -3,7 +3,7 @@ class logs
 {
     private $id, $name, $action, $date, $conn;
 
-    function _contruct()
+    function __construct()
     {
         $this->conn = new db_connection();
     }

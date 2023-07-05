@@ -8,9 +8,9 @@ class device
     private $consumption;
     private $conn;
 
-    function _contruct()
+    function __construct($conn)
     {
-        $this->conn = new db_connection();
+        $this->conn = $conn;
     }
 
     function getName()
@@ -63,5 +63,15 @@ class device
         $sql_render = $sql_render->prepare("SELECT name, consumption FROM device");
         $sql_render->setFetchMode(PDO::FETCH_ASSOC);
         return $sql_render;
+    }
+
+    function addDevice($name, $MAC, $IP, $date, $consump)
+    {
+        $sql = "INSERT INTO device (name, MAC, IP, crdate, consumption) VALUES ('$name', '$MAC', '$IP', '$date', $consump)";
+        $conn = new db_connection();
+        $conn = $conn->connect();
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        return $stmt;
     }
 }

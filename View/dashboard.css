@@ -1,24 +1,18 @@
-* {
-  margin: 0;
-  padding: 0%;
-  text-decoration: none;
-  box-sizing: border-box;
-}
 html,
 body {
+  margin: 0;
+  padding: 0;
   font-family: arial, helvetica;
   background-color: #e0e0e0;
 }
-
-.container-view {
-  height: 100vh;
-}
-
 #menu {
-  height: 100%;
+  float: left;
+  width: 16.93%;
+  height: 750px;
+  position: fixed;
   background-color: whitesmoke;
-  padding: 30px;
-  border-right: 1px solid #dee2e6;
+  border-right: 1px solid gray;
+  height: 100vh;
 }
 a {
   text-decoration: none;
@@ -28,44 +22,46 @@ a:hover {
   transition: 0.25s;
 }
 .title {
-  font-size: 18px;
-  padding: 30px 0 0 0;
+  width: 85%;
+  height: 3%;
+  padding-top: 10%;
+  padding-left: 10%;
+  font-size: 20px;
 }
 .title:hover {
   cursor: pointer;
   color: #09afff;
   transition: 0.5s;
 }
-#hamburger-menu {
-  display: none;
-}
 #header {
-  height: 48px;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
+  float: right;
+  height: 35px;
+  width: 83%;
   background-color: whitesmoke;
 }
-
-.avatar-container {
-  display: flex;
-  padding-right: 8px;
-}
-
 .img-ava-user {
-  width: 36px;
+  width: 85%;
+  height: 26px;
+  float: left;
+  padding-top: 0.75%;
 }
-
 .info-user {
-  font-size: 18px;
-  margin-left: 8px;
+  float: right;
+  height: 23px;
+  width: 15%;
+  padding-top: 1%;
+  font-size: 17px;
 }
-/* table */
+#content-main {
+  float: right;
+  width: 83%;
+  height: auto;
+}
 .table-device {
   background: white;
   width: 80%;
   height: auto;
-  margin: 0 auto;
+  margin: 2% 10% 0 10%;
 }
 table {
   width: 100%;
@@ -91,7 +87,7 @@ td {
   float: right;
   background: white;
 }
-.add-alert {
+.add-noti {
   margin: 8% 0 0 11%;
   color: red;
   font-weight: bold;

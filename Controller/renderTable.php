@@ -14,7 +14,7 @@ function render($sql_render, $sql_sum)
         echo '<tr><td style="text-align: left">' . $row['name'] . '</td>
             <td>'  . $row['MAC'] . '</td>
             <td>'  . $row['IP'] . '</td>
-            <td>'  . $row['created'] . '</td>
+            <td>'  . $row['crdate'] . '</td>
             <td>'  . $row['consumption'] . '</td></tr>';
     };
     foreach ($sql_sum as $key) {
