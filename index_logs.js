@@ -1,7 +1,7 @@
 logsArray = JSON.parse(logsArray);
 $(document).ready(function () {
   function reload(arr) {
-    const table =
+    var table =
       "<thead><tr><th>Device ID</th><th>Name</th><th>Action</th><th>Date</th></tr></thead><tbody>";
     for (let i = 1; i <= arr.length; i++) {
       table +=
@@ -19,16 +19,16 @@ $(document).ready(function () {
     $("table").html(table);
   }
 
-  const arr = logsArray;
+  var arr = logsArray;
   reload(arr);
 
   function pagination(arr) {
     $("#container-pagination").empty();
-    const rowsShow = 8;
-    const rowsTotal = arr.length;
-    const numPages = rowsTotal / rowsShow;
+    var rowsShow = 8;
+    var rowsTotal = arr.length;
+    var numPages = rowsTotal / rowsShow;
     for (i = 0; i < numPages; i++) {
-      const pageNum = i + 1;
+      var pageNum = i + 1;
       $("#container-pagination").append(
         '<a href="#" rel="' + i + '">' + "<div>" + pageNum + "</div></a>"
       );
@@ -40,9 +40,9 @@ $(document).ready(function () {
     $("#container-pagination a").bind("click", function () {
       $("#container-pagination a").removeClass("active");
       $(this).addClass("active");
-      const currPage = $(this).attr("rel");
-      const startItem = currPage * rowsShow;
-      const endItem = startItem + rowsShow;
+      var currPage = $(this).attr("rel");
+      var startItem = currPage * rowsShow;
+      var endItem = startItem + rowsShow;
       $("#table tbody tr")
         .css("opacity", "0.0")
         .hide()
@@ -55,7 +55,7 @@ $(document).ready(function () {
 
   $("#search").click(function () {
     x = [];
-    const name = $("#input-search").val().toUpperCase();
+    var name = $("#input-search").val().toUpperCase();
     if (name == "") alert("Invalid input");
     else {
       for (let i = 0; i < logsArray.length; i++) {
@@ -68,7 +68,6 @@ $(document).ready(function () {
         }
       }
       reload(x);
-      page(x);
     }
   });
 });

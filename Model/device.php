@@ -1,5 +1,5 @@
 <?php
-class device
+class Device
 {
     private $name;
     private $mac;
@@ -8,9 +8,9 @@ class device
     private $consumption;
     private $conn;
 
-    function _contruct()
+    function __construct($conn)
     {
-        $this->conn = new db_connection();
+        $this->conn = $conn;
     }
 
     function getName()
@@ -57,9 +57,9 @@ class device
         return $sql_render;
     }
 
-    function getDbChart($conn)
+    function getDbChart()
     {
-        $sql_render = $conn->connect();
+        $sql_render = $this->conn->connect();
         $sql_render = $sql_render->prepare("SELECT name, consumption FROM device");
         $sql_render->setFetchMode(PDO::FETCH_ASSOC);
         return $sql_render;

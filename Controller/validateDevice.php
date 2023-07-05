@@ -1,8 +1,8 @@
 <?php
 
-function validate()
+function validateDevice()
 {
-    $nameErr = $MACErr = $IPerror = $consumpErr = "";
+    $nameErr = $MACErr  = $consumpErr = "";
     $name = $MAC = $IP =  $consump = "";
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (empty($_POST["name"])) {
@@ -40,8 +40,11 @@ function validate()
         $date = date("Y-m-d");
         try {
             $sql = "INSERT INTO device (name, MAC, IP, created, consumption) VALUES ('$name', '$MAC', '$IP', '$date', $consump)";
-            $conn = new db_connection();
-            $conn = $conn->connect();
+            $conn = new Database();
+            $stmt = $conn->connect()->prepare($sql);
+            if ($stmt->execute()) {
+                header('location: ./dashboard.php');
+            }
         } catch (PDOException $e) {
             echo $sql . "<br>" . $e->getMessage();
         }

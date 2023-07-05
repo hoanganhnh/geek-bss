@@ -1,36 +1,14 @@
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Cơ sở dữ liệu: `bss`
---
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `device`
---
-
 CREATE TABLE `device` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `MAC` varchar(255) NOT NULL,
   `IP` varchar(255) NOT NULL,
   `created` date NOT NULL,
-  `consumption` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `consumption` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1;
 
---
--- Đang đổ dữ liệu cho bảng `device`
---
 
 INSERT INTO `device` (`id`, `name`, `MAC`, `IP`, `created`, `consumption`) VALUES
 (1, 'TV', '00:1B:44:11:3B:B7', '127.0.0.1', '2021-11-03', 40),
@@ -38,22 +16,15 @@ INSERT INTO `device` (`id`, `name`, `MAC`, `IP`, `created`, `consumption`) VALUE
 (3, 'Refrigerator', '00:1B:44:11:3A:B9', '127.0.0.4', '2021-05-31', 80),
 (4, 'Selling Fan', '00:1B:44:11:3A:B2', '127.0.0.5', '2021-05-31', 100);
 
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `logs`
---
 
 CREATE TABLE `logs` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `action` varchar(255) NOT NULL,
-  `created` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `created` date NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1;
 
---
--- Đang đổ dữ liệu cho bảng `logs`
---
 
 INSERT INTO `logs` (`id`, `name`, `action`, `created`) VALUES
 (1, 'TV', 'Turn On', '2021-06-03'),
@@ -80,40 +51,3 @@ INSERT INTO `logs` (`id`, `name`, `action`, `created`) VALUES
 (43, 'Selling Fan', 'Turn On', '2021-09-03'),
 (45, 'Selling Fan', 'Turn On', '2021-06-10');
 
---
--- Chỉ mục cho các bảng đã đổ
---
-
---
--- Chỉ mục cho bảng `device`
---
-ALTER TABLE `device`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `MAC` (`MAC`);
-
---
--- Chỉ mục cho bảng `logs`
---
-ALTER TABLE `logs`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT cho các bảng đã đổ
---
-
---
--- AUTO_INCREMENT cho bảng `device`
---
-ALTER TABLE `device`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
-
---
--- AUTO_INCREMENT cho bảng `logs`
---
-ALTER TABLE `logs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

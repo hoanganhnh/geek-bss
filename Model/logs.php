@@ -1,11 +1,11 @@
 <?php
-class logs
+class Log
 {
     private $id, $name, $action, $date, $conn;
 
-    function _contruct()
+    function __construct($conn)
     {
-        $this->conn = new db_connection();
+        $this->conn = $conn;
     }
 
     function getId()
@@ -44,9 +44,9 @@ class logs
     {
         $this->date = $date;
     }
-    function getDb($conn)
+    function getDb()
     {
-        $sql_render = $conn->connect();
+        $sql_render = $this->conn->connect();
         $sql_render = $sql_render->prepare("SELECT * FROM logs");
         $sql_render->setFetchMode(PDO::FETCH_ASSOC);
         return $sql_render;

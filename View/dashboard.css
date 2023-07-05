@@ -7,11 +7,7 @@
 html,
 body {
   font-family: arial, helvetica;
-  background-color: #e0e0e0;
-}
-
-.container-view {
-  height: 100vh;
+  background-color: #e0e0e0 !important;
 }
 
 #menu {
@@ -85,7 +81,7 @@ td {
   float: left;
 }
 .add-device {
-  height: 460px;
+  height: 420px;
   width: 38%;
   margin: 1% 10% 0 0;
   float: right;

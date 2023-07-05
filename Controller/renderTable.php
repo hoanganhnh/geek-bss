@@ -1,6 +1,6 @@
 <?php
-$conn = new db_connection();
-$sql_render = new device($conn);
+$conn = new Database();
+$sql_render = new Device($conn);
 $sql_render = $sql_render->getDb($conn);
 $sql_render->execute();
 

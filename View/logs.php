@@ -1,9 +1,10 @@
 <?php
-require '../Model/db_connection.php';
 require '../Model/logs.php';
-$sql_array = new logs();
-$conn = new db_connection();
-$sql_array = $sql_array->getDb($conn);
+require '../Model/database.php';
+
+$conn = new Database();
+$sql_array = new Log($conn);
+$sql_array = $sql_array->getDb();
 
 $sql_array->execute();
 ?>
@@ -22,9 +23,9 @@ $sql_array->execute();
 <body>
 	<div class="container-view">
 		<div class="row w-100 h-100 m-0">
-			<div class="col-3 p-0">
+			<div class="col-xl-3 p-0">
 				<div id="menu">
-					<div class="title" style="padding-top: 8%;">
+					<div class="title p-0" style="padding-top: 8%;">
 						<i class="fas fa-laptop-house"></i>
 						Device Management
 					</div>
@@ -32,9 +33,13 @@ $sql_array->execute();
 					<div class="title" style="color: #09afff;"><i class='fas fa-clock'></i>
 						Logs</div>
 					<div class="title"><i class="fas fa-cog"></i> Settings</div>
+					<div class="title">
+						<i class="fa fa-sign-out"></i>
+						<a href="/">Log out</a>
+					</div>
 				</div>
 			</div>
-			<div class="col-9 p-0">
+			<div class="col-xl-9 p-0">
 				<div id="header">
 					<div class="avatar-container">
 						<div class="img-ava-user">
@@ -44,23 +49,14 @@ $sql_array->execute();
 					</div>
 				</div>
 				<form action="" method="get">
-
 					<div id="content-main">
 						<div class="title-logs">Action Logs</div>
-
-						<!-- <div class="custom-page">
-							<select name="limit">
-								<option value="5">5</option>
-								<option value="10">10</option>
-								<option value="15">15</option>
-							</select>
-						</div> -->
 						<div class="div-search">
 							<div class="box-search">
 								<input type="text" id="input-search" placeholder="Name">
 							</div>
 							<div class="mt-3">
-								<button type="submit" class="btn btn-warning">
+								<button type="submit" class="btn btn-warning" id="search">
 									Search
 								</button>
 							</div>
@@ -79,6 +75,7 @@ $sql_array->execute();
 						</div>
 						<div id="container-pagination">
 						</div>
+					</div>
 				</form>
 			</div>
 		</div>
