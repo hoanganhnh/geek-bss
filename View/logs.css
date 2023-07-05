@@ -1,0 +1,181 @@
+* {
+  margin: 0;
+  padding: 0%;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+html,
+body {
+  font-family: arial, helvetica;
+  background-color: #e0e0e0;
+}
+
+.container-view {
+  height: 100vh;
+}
+
+#menu {
+  height: 100%;
+  background-color: whitesmoke;
+  padding: 30px;
+  border-right: 1px solid #dee2e6;
+}
+a {
+  text-decoration: none;
+}
+a:hover {
+  color: #09afff;
+  transition: 0.25s;
+}
+.title {
+  font-size: 18px;
+  padding: 30px 0 0 0;
+}
+.title:hover {
+  cursor: pointer;
+  color: #09afff;
+  transition: 0.5s;
+}
+#hamburger-menu {
+  display: none;
+}
+#header {
+  height: 48px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: whitesmoke;
+}
+
+.avatar-container {
+  display: flex;
+  padding-right: 8px;
+}
+
+.img-ava-user {
+  width: 36px;
+}
+
+.info-user {
+  font-size: 18px;
+  margin-left: 8px;
+}
+
+.table-device {
+  background: white;
+  width: 80%;
+  height: auto;
+  margin: 2% 10% 0 10%;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+}
+th,
+td {
+  padding: 8px;
+  border-bottom: 1px solid #dee2e6;
+}
+
+/* -------------------------------------------------*/
+/*logs.css*/
+.title-logs {
+  height: 3%;
+  width: 15%;
+  float: left;
+  margin: 2% 0 0 10%;
+  font-size: 25px;
+}
+.custom-page {
+  float: left;
+  width: 35%;
+}
+.custom-page select {
+  width: 15%;
+  height: 30px;
+  margin: 6% 0 0 80%;
+}
+.div-search {
+  float: right;
+  height: 50px;
+  width: 40%;
+}
+.box-search {
+  margin-top: 3%;
+  float: left;
+  height: 50px;
+  width: 50%;
+}
+#input-search {
+  height: 85%;
+  padding-left: 3%;
+  border: none;
+  background: #ffdaddc9;
+  width: 90%;
+}
+.div-btn-search {
+  width: 50%;
+  float: right;
+  height: 55px;
+  margin-top: 6px;
+}
+.clear {
+  clear: both;
+}
+.btn-search {
+  margin-top: 6%;
+  width: 30%;
+  font-size: 20px;
+  height: 60%;
+  border: none;
+  border-radius: 15px;
+  background: orange;
+  color: white;
+}
+.btn-search:hover {
+  color: black;
+  background-color: red;
+  cursor: pointer;
+  transition: 0.5s;
+}
+.table-logs {
+  margin: 2% 3% 0 4%;
+  background: white;
+  border-bottom: 1px solid ghostwhite;
+}
+#container-pagination {
+  height: 100px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#container-pagination span {
+  float: left;
+  padding: 1%;
+  background: red;
+  border: 1px solid grey;
+  margin-right: 4%;
+  color: black;
+}
+#container-pagination a {
+  text-decoration: none;
+  float: left;
+  margin-right: 4%;
+  padding: 1%;
+  background: whitesmoke;
+  border: 1px solid gray;
+  color: black;
+}
+.pagination {
+  list-style: none;
+  margin: 3% 30% 0 40%;
+  height: 100%;
+}
+#container-pagination a:hover {
+  background: red;
+  cursor: pointer;
+  transition: 0.5s;
+  color: black;
+}

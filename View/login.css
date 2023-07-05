@@ -1,0 +1,118 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #e0e0e0;
+}
+#box-log-in {
+  padding: 0;
+  font-family: arial, helvetica;
+  background-color: white;
+  box-shadow: 5px 10px 8px #888888;
+  height: 400px;
+  margin: 10% 30% 0 30%;
+}
+.form {
+  height: 400px;
+}
+.row-content {
+  text-align: center;
+  height: 15%;
+  padding-top: 5%;
+  color: #8b8989;
+}
+.div-alert {
+  height: 10%;
+  margin: 0% 0 0 12%;
+  color: red;
+}
+.row-account {
+  text-align: center;
+  height: 19%;
+  padding-top: 1%;
+}
+.input-box {
+  background: #f5e3e3;
+  border: none;
+  height: 80%;
+  width: 75%;
+  padding-left: 2%;
+}
+.row-log-in {
+  height: 27%;
+  padding-top: 3%;
+}
+.div-log-in {
+  width: 20%;
+  height: 50%;
+  float: left;
+  margin-left: 20%;
+  padding-top: 2%;
+}
+.btn-log-in {
+  border: none;
+  background: #ff7f00;
+  height: 50px;
+  width: 130%;
+  border-radius: 15px;
+  color: white;
+  padding-left: 10%;
+}
+.btn-log-in:hover {
+  cursor: pointer;
+}
+.div-create-account {
+  float: right;
+  width: 40%;
+  margin-right: 10%;
+  padding-top: 3%;
+  font-size: 13px;
+  color: #0000ee;
+}
+.div-create-account:hover {
+  cursor: pointer;
+}
+
+@media only screen and (min-width: 1366px) {
+  .row-content {
+    font-size: 25px;
+  }
+  .input-box {
+    font-size: 25px;
+  }
+  .btn-log-in {
+    font-size: 20px;
+  }
+  .div-create-account {
+    font-size: 20px;
+    padding-top: 3.5%;
+  }
+}
+
+@media only screen and (min-width: 2200px) {
+  #box-log-in {
+    height: 425px;
+  }
+  .row-log-in {
+    height: 28%;
+    padding-top: 2%;
+  }
+  .div-log-in {
+    margin-left: 30%;
+    padding-top: 1%;
+  }
+  .btn-log-in {
+    height: 60px;
+    width: 170px;
+  }
+  .div-create-account {
+    width: 25%;
+    margin-right: 20%;
+  }
+}
+
+@media only screen and (min-width: 2700px) {
+  #box-log-in {
+    height: 450px;
+  }
+}
