@@ -1,5 +1,5 @@
 <?php
-$conn = new db_connection();
+$conn = new Database();
 $sql_render = new device($conn);
 $sql_render = $sql_render->getDb($conn);
 $sql_render->execute();

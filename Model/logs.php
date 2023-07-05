@@ -1,11 +1,11 @@
 <?php
-class logs
+class Log
 {
     private $id, $name, $action, $date, $conn;
 
-    function __construct()
+    function __construct($conn)
     {
-        $this->conn = new db_connection();
+        $this->conn = $conn;
     }
 
     function getId()

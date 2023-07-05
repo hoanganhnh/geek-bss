@@ -28,13 +28,14 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `device` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `MAC` varchar(255) NOT NULL,
   `IP` varchar(255) NOT NULL,
   `crdate` date NOT NULL,
-  `consumption` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `consumption` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1;
 
 --
 -- Đang đổ dữ liệu cho bảng `device`
@@ -53,11 +54,12 @@ INSERT INTO `device` (`id`, `name`, `MAC`, `IP`, `crdate`, `consumption`) VALUES
 --
 
 CREATE TABLE `logs` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `action` varchar(255) NOT NULL,
-  `crdate` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `crdate` date NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1;
 
 --
 -- Đang đổ dữ liệu cho bảng `logs`

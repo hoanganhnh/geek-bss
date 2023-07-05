@@ -40,11 +40,9 @@ function validate()
         $date = date("Y-m-d");
         try {
             $sql = "INSERT INTO device (name, MAC, IP, crdate, consumption) VALUES ('$name', '$MAC', '$IP', '$date', $consump)";
-            $conn = new db_connection();
-            $conn = $conn->connect();
-            $stmt = $conn->prepare($sql);
+            $conn = new Database();
+            $stmt = $conn->connect()->prepare($sql);
             $stmt->execute();
-            var_dump($stmt);
         } catch (PDOException $e) {
             echo $sql . "<br>" . $e->getMessage();
         }

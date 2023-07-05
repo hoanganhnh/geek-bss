@@ -1,13 +1,13 @@
 <?php
-require '../Model/db_connection.php';
+require '../Model/database.php';
 require '../Model/device.php';
 require '../Controller/renderTable.php';
 require '../Controller/validateDevice.php';
 
-$conn = new db_connection();
-$sql_chart = new device($conn);
-$sql_chart = $sql_chart->getDbChart($conn);
-$sql_chart->execute();
+$conn = new Database();
+$device_sql_chart = new Device($conn);
+$device_sql_chart = $device_sql_chart->getDbChart($conn);
+$device_sql_chart->execute();
 ?>
 
 <!DOCTYPE html>
@@ -58,7 +58,7 @@ $sql_chart->execute();
 			<canvas id="myChart" style="height: 458.4px; width: 460px; margin-left: 4%;">
 				<script>
 					var chartArray = '<?php $arr = array();
-										while ($row = $sql_chart->fetch()) {
+										while ($row = $device_sql_chart->fetch()) {
 											$arr[] = $row;
 										}
 										echo JSON_encode($arr); ?>';

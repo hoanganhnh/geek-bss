@@ -1,5 +1,5 @@
 <?php
-class db_connection
+class Database
 {
 
     private $host = "127.0.0.1";

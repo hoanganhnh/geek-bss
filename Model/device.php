@@ -1,5 +1,5 @@
 <?php
-class device
+class Device
 {
     private $name;
     private $mac;
@@ -68,9 +68,7 @@ class device
     function addDevice($name, $MAC, $IP, $date, $consump)
     {
         $sql = "INSERT INTO device (name, MAC, IP, crdate, consumption) VALUES ('$name', '$MAC', '$IP', '$date', $consump)";
-        $conn = new db_connection();
-        $conn = $conn->connect();
-        $stmt = $conn->prepare($sql);
+        $stmt = $this->conn->prepare($sql);
         $stmt->execute();
         return $stmt;
     }
