@@ -1,13 +1,8 @@
 <?php
-require '../Model/database.php';
-require '../Model/device.php';
-require '../Controller/renderTable.php';
-require '../Controller/validateDevice.php';
+require '../Controller/DeviceController.php';
 
-$conn = new Database();
-$sql_chart = new Device($conn);
-$sql_chart = $sql_chart->getDbChart($conn);
-$sql_chart->execute();
+$device = new DeviceController();
+
 ?>
 
 <!DOCTYPE html>
@@ -63,7 +58,7 @@ $sql_chart->execute();
 									<th style="text-align: right; padding-right: 3%">Power Consumption(Kw/H)</th>
 								</tr>
 								<?php
-								render($sql_render, $sql_sum);
+								$device->renderTableDevice();
 								?>
 							</thead>
 						</table>
@@ -72,18 +67,15 @@ $sql_chart->execute();
 						<div class="power-chart">
 							<canvas id="myChart" style="height: 458.4px; width: 460px; margin-left: 4%;">
 								<script>
-									var chartArray = '<?php $arr = array();
-														while ($row = $sql_chart->fetch()) {
-															$arr[] = $row;
-														}
-														echo JSON_encode($arr); ?>';
+									var chartArray = '<?php $data = $device->renderDataChart();
+														echo JSON_encode($data); ?>';
 								</script>
 							</canvas>
 						</div>
 						<div class="add-device">
 							<form method="post" action="" style="height:100%;">
 								<div class="add-alert">
-									<?php validateDevice() ?></div>
+									<?php $device->validateDevice() ?></div>
 								<div class="input-device"><input type="text" name="name" placeholder="Name" class="input-device-box"></div>
 								<div class="input-device"><input type="text" name="MAC" placeholder="MAC" class="input-device-box"></div>
 								<div class="input-device"><input type="text" name="IP" placeholder="IP" class="input-device-box"></div>

@@ -50,9 +50,9 @@ class Device
         $this->date = $date;
     }
 
-    function getDb($conn)
+    function getDb()
     {
-        $sql_render = $conn->connect();
+        $sql_render = $this->conn->connect();
         $sql_render = $sql_render->prepare("SELECT * FROM device");
         return $sql_render;
     }
@@ -60,8 +60,16 @@ class Device
     function getDbChart()
     {
         $sql_render = $this->conn->connect();
-        $sql_render = $sql_render->prepare("SELECT name, consumption FROM device");
+        $sql_render = $sql_render->prepare("SELECT * FROM device");
         $sql_render->setFetchMode(PDO::FETCH_ASSOC);
         return $sql_render;
+    }
+
+    function getSumConsumption()
+    {
+        $sql_sum = $this->conn->connect()->prepare("SELECT SUM(consumption)FROM device");
+        $sql_sum->execute();
+
+        return $sql_sum;
     }
 }
