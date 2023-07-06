@@ -1,4 +1,4 @@
-<?php include './Controller/validateLogin.php' ?>
+<?php include './Controller/UserController.php' ?>
 
 <!DOCTYPE html>
 <html>
@@ -6,7 +6,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" text="text/css" href="./View/login.css">
+	<link rel="stylesheet" text="text/css" href="./View/styles/login.css">
 	<title>Log in</title>
 </head>
 
@@ -17,7 +17,7 @@
 		</div>
 		<form method="post" action="" class="form">
 			<div class="div-alert">
-				<?php validate(); ?>
+				<?php UserController::login(); ?>
 			</div>
 			<div class="row-account">
 				<input type="text" class="input-box" name="name" placeholder="User name">
@@ -35,7 +35,7 @@
 			</div>
 		</form>
 	</div>
-	<script src="jquery-3.6.0.js"></script>
+	<script src="./View/scripts/libs/jquery-3.6.0.js"></script>
 </body>
 
 </html>

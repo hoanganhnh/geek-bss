@@ -1,5 +1,6 @@
 <?php
 require '../Controller/DeviceController.php';
+require '../Controller/UserController.php';
 
 $device = new DeviceController();
 
@@ -11,7 +12,7 @@ $device = new DeviceController();
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" text="text/css" href="dashboard.css">
+	<link rel="stylesheet" text="text/css" href="./styles/dashboard.css">
 	<script src="https://kit.fontawesome.com/3f1e871f13.js"></script>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 	<title>Dashboard</title>
@@ -33,7 +34,7 @@ $device = new DeviceController();
 					<div class="title"><i class="fas fa-cog"></i> Settings</div>
 					<div class="title">
 						<i class="fa fa-sign-out"></i>
-						<a href="/">Log out</a>
+						<a href="./logout.php">Log out</a>
 					</div>
 				</div>
 			</div>
@@ -79,7 +80,7 @@ $device = new DeviceController();
 								<div class="input-device"><input type="text" name="name" placeholder="Name" class="input-device-box"></div>
 								<div class="input-device"><input type="text" name="MAC" placeholder="MAC" class="input-device-box"></div>
 								<div class="input-device"><input type="text" name="IP" placeholder="IP" class="input-device-box"></div>
-								<div class="input-device"><input type="text" name="consumption" placeholder="Consumption" class="input-device-box"></div>
+								<div class="input-device"><input type="number" name="consumption" placeholder="Consumption" class="input-device-box"></div>
 								<div class="input-device">
 									<button type="submit" class="btn btn-warning">
 										Add device
@@ -92,9 +93,9 @@ $device = new DeviceController();
 			</div>
 		</div>
 
-		<script src="../jquery-3.6.0.js"></script>
+		<script src="./scripts/libs/jquery-3.6.0.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-		<script type="text/javascript" src="../index.js"></script>
+		<script type="text/javascript" src="./scripts/dashboard.js"></script>
 </body>
 
 </html>

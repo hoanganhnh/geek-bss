@@ -1,7 +1,7 @@
 <?php
 
-require '../Model/database.php';
-require '../Model/device.php';
+require '../Database/Database.php';
+require '../Model/Device.php';
 
 class DeviceController
 {
@@ -87,7 +87,7 @@ class DeviceController
                 $conn = new Database();
                 $stmt = $conn->connect()->prepare($sql);
                 if ($stmt->execute()) {
-                    header('location: ./dashboard.php');
+                    header('location: #');
                 }
             } catch (PDOException $e) {
                 echo $sql . "<br>" . $e->getMessage();

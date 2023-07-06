@@ -29,7 +29,7 @@ class Device
     {
         return $this->date;
     }
-    function getConsuption()
+    function getConsumption()
     {
         return $this->consumption;
     }

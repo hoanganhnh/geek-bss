@@ -1,12 +1,16 @@
 <?php
-require '../Model/logs.php';
-require '../Model/database.php';
+// require '../Model/logs.php';
+// require '../Model/database.php';
 
-$conn = new Database();
-$sql_array = new Log($conn);
-$sql_array = $sql_array->getDb();
+// $conn = new Database();
+// $sql_array = new Log($conn);
+// $sql_array = $sql_array->getDb();
 
-$sql_array->execute();
+// $sql_array->execute();
+
+require '../Controller/LogController.php';
+
+$logController = new LogController();
 ?>
 
 <!DOCTYPE html>
@@ -15,7 +19,7 @@ $sql_array->execute();
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" text="text/css" href="logs.css">
+	<link rel="stylesheet" text="text/css" href="./styles/logs.css">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 	<title>Logs</title>
 </head>
@@ -30,12 +34,12 @@ $sql_array->execute();
 						Device Management
 					</div>
 					<div class="title"><i class="fas fa-table"></i> <a href="dashboard.php">Dashboard</a></div>
-					<div class="title" style="color: #09afff;"><i class='fas fa-clock'></i>
+					<div class="title"><i class='fas fa-clock'></i>
 						Logs</div>
 					<div class="title"><i class="fas fa-cog"></i> Settings</div>
 					<div class="title">
 						<i class="fa fa-sign-out"></i>
-						<a href="/">Log out</a>
+						<a href="./logout.php">Log out</a>
 					</div>
 				</div>
 			</div>
@@ -56,7 +60,7 @@ $sql_array->execute();
 								<input type="text" id="input-search" placeholder="Name">
 							</div>
 							<div class="mt-3">
-								<button type="submit" class="btn btn-warning" id="search">
+								<button type="button" class="btn btn-warning" id="search">
 									Search
 								</button>
 							</div>
@@ -82,16 +86,13 @@ $sql_array->execute();
 	</div>
 
 	<script>
-		var logsArray = '<?php $arr = array();
-							while ($row = $sql_array->fetch()) {
-								$arr[] = $row;
-							}
+		var logsArray = '<?php $arr = $logController->renderDataLog();
 							echo JSON_encode($arr); ?>';
 	</script>
 	<script src="https://kit.fontawesome.com/3f1e871f13.js"></script>
-	<script src="../jquery-3.6.0.js"></script>
+	<script src="./scripts/libs/jquery-3.6.0.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-	<script src="../index_logs.js"></script>
+	<script src="./scripts/logs.js"></script>
 </body>
 
 </html>
