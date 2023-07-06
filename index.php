@@ -1,4 +1,7 @@
-<?php include './Controller/UserController.php' ?>
+<?php include './Controller/UserController.php';
+
+$userController = new UserController();
+?>
 
 <!DOCTYPE html>
 <html>
@@ -15,9 +18,9 @@
 		<div class="row-content">
 			<b>BSS SYSTEM</b>
 		</div>
-		<form method="post" action="" class="form">
+		<form method="post" action="<?php $userController->login(); ?>" class="form">
 			<div class="div-alert">
-				<?php UserController::login(); ?>
+				<?php $userController->login(); ?>
 			</div>
 			<div class="row-account">
 				<input type="text" class="input-box" name="name" placeholder="User name">

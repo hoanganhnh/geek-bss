@@ -2,13 +2,15 @@
 
 require '../Database/Database.php';
 require '../Model/Device.php';
+require 'AuthController.php';
 
-class DeviceController
+class DeviceController extends AuthController
 {
     private Device $device;
 
     function __construct()
     {
+        parent::__construct();
         $conn = new Database();
         $this->device = new Device($conn);
     }

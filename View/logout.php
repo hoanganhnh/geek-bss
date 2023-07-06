@@ -1,8 +1,8 @@
 <?php
-session_start();
-unset($_SESSION["name"]);
-unset($_SESSION["password"]);
+unset($_COOKIE['name']);
+setcookie('name', '', -1, '/');
+unset($_COOKIE['password']);
+setcookie('password', '', -1, '/');
 
 echo 'You have logout successful!';
-header('Refresh: 1; URL = /');
-session_destroy();
+header('Refresh: 2; URL = /');

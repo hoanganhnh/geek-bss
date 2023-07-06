@@ -1,15 +1,17 @@
 <?php
 
-require '../Model/Log.php';
 require '../Database/Database.php';
+require '../Model/Log.php';
+require 'AuthController.php';
 
-class LogController
+class LogController extends AuthController
 {
 
     private Log $log;
 
     function __construct()
     {
+        parent::__construct();
         $conn = new Database();
         $this->log = new Log($conn);
     }

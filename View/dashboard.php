@@ -1,9 +1,11 @@
 <?php
 require '../Controller/DeviceController.php';
-require '../Controller/UserController.php';
 
 $device = new DeviceController();
 
+// if (!isset($_COOKIE["name"]) || !isset($_COOKIE["password"])) {
+// 	header('location:Refresh: 1;  URL = /');
+// }
 ?>
 
 <!DOCTYPE html>
